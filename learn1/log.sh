@@ -6,6 +6,12 @@ none='\e[0m'
 red='\e[91m'  
 green='\e[92m'
 
+#相信我，如果不写注释这段代码我下周就不认识了，写了也才能凑合凑合认识
+#通过系统信息获取nginx默认配置文件的位置，之后查找access_log（Logfile_path）和include（other_conf_path）的内容
+#通过include的内容查找到其他的配置（x1），再通过其他的配置来找到其中特殊的access_log（x2）（x3是为了去除x2末尾的分号）
+#将查找到的access_log聚合，这也就是x6
+#之后在cat x6中使用正则匹配到http状态码，之后使用awk来进行循环，之后print，输出数据
+
 allinfo=$(ps -ef |grep nginx |awk '{print $NF}')
 conf_path=`echo $allinfo | cut -d" " -f 1`
 Logfile_path=$(cat $conf_path|grep access_log|awk '{print $2}')
