@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Program Function 展示系统信息
+
 none='\e[0m'
 red='\e[91m'
 green='\e[92m'

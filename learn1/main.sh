@@ -10,6 +10,7 @@ numbers=''
 for script_file in `ls -I "main.sh" ./`
 do
   echo -e "${red} 请输入相应的命令来执行相应的脚本" ${i} '===>' ${none} ${script_file}
+  grep -E "^\#Program Function" ${script_file}
   ssharray[$i]=${script_file}
   numbers="${numbers} | ${i}"
   i=$((i+1))
